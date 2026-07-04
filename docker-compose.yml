@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  webtop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: antigravity-remote-dev
+    ports:
+      - "3000:3000"   # Webtop HTTP Web Desktop interface (VNC)
+      - "3100:3100"   # Antigravity Phone Connect server (Zero-Trust Frontend)
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York  # Update to your local Timezone
+      # - APP_PASSWORD=configure_your_secure_passcode_here  # Override in Dokploy config
+    volumes:
+      - webtop_config:/config
+      - webtop_workspace:/workspace
+    shm_size: "1gb"          # Required for smooth Chromium performance inside XFCE
+    restart: unless-stopped
+
+volumes:
+  webtop_config:
+    driver: local
+  webtop_workspace:
+    driver: local

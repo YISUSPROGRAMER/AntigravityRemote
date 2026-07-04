@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Helper: Extract IDE
+Comment=Extract Antigravity IDE from Downloads
+Exec=/config/Desktop/Help_Install_Antigravity.sh
+Icon=system-software-install
+Terminal=true
+Categories=System;

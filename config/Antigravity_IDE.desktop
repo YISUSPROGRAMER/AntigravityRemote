@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Antigravity IDE
+Comment=Google Antigravity Agent-First IDE
+Exec=/config/antigravity-ide/antigravity --remote-debugging-port=9000
+Icon=utilities-terminal
+Path=/workspace
+Terminal=false
+StartupNotify=true
+Categories=Development;IDE;

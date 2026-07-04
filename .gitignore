@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables
+.env
+**/.env
+.env*.local
+
+# SSL certificates
+certs/
+**/certs/
+
+# Python Virtual Environment
+venv/
+**/venv/
+.venv/
+**/.venv/
+
+# Editor files
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
