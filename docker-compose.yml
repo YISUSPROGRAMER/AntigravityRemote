@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: antigravity-remote-dev
     ports:
-      - "3000:3000"   # Webtop HTTP Web Desktop interface (VNC)
-      - "3100:3100"   # Antigravity Phone Connect server (Zero-Trust Frontend)
+      - "3020:3000"   # Webtop HTTP Web Desktop interface (VNC)
+      - "3120:3100"   # Antigravity Phone Connect server (Zero-Trust Frontend)
     environment:
       - PUID=1000
       - PGID=1000
