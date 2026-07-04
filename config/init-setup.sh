@@ -35,19 +35,19 @@ set_env_val "TRUST_LAN" "false"
 # 3. Generate random SESSION_SECRET if default or missing
 CURRENT_SECRET=$(grep "^SESSION_SECRET=" "$ENV_FILE" | cut -d'=' -f2- || true)
 if [ -z "$CURRENT_SECRET" ] || [ "$CURRENT_SECRET" = "antigravity_secret_key_1337" ]; then
-    RANDOM_SECRET=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32 || true)
+    RANDOM_SECRET=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32 || true)
     echo "🔑 Generating secure random SESSION_SECRET..."
     set_env_val "SESSION_SECRET" "$RANDOM_SECRET"
 fi
 
 # 4. Check/Generate APP_PASSWORD
-CURRENT_PASS=$(grep "^APP_PASSWORD=" "$ENV_FILE" | cut -d'=' -f2- || true)
-if [ -z "$CURRENT_PASS" ] || [ "$CURRENT_PASS" = "antigravity" ]; then
-    if [ -n "$APP_PASSWORD" ] && [ "$APP_PASSWORD" != "antigravity" ]; then
-        echo "👤 Enforcing APP_PASSWORD from Docker environment..."
-        set_env_val "APP_PASSWORD" "$APP_PASSWORD"
-    else
-        RANDOM_PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 12 || true)
+if [ -n "$APP_PASSWORD" ] && [ "$APP_PASSWORD" != "antigravity" ]; then
+    echo "👤 Enforcing APP_PASSWORD from Docker environment..."
+    set_env_val "APP_PASSWORD" "$APP_PASSWORD"
+else
+    CURRENT_PASS=$(grep "^APP_PASSWORD=" "$ENV_FILE" | cut -d'=' -f2- || true)
+    if [ -z "$CURRENT_PASS" ] || [ "$CURRENT_PASS" = "antigravity" ] || [ "$CURRENT_PASS" = "your-app-password" ]; then
+        RANDOM_PASS=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 12 || true)
         echo "⚠️  No APP_PASSWORD set or using default. Generating a random passcode: $RANDOM_PASS"
         echo "💾 PLEASE SAVE THIS PASSCODE FOR LOGIN!"
         set_env_val "APP_PASSWORD" "$RANDOM_PASS"
@@ -57,7 +57,7 @@ fi
 # 5. Check/Generate AUTH_SALT
 CURRENT_SALT=$(grep "^AUTH_SALT=" "$ENV_FILE" | cut -d'=' -f2- || true)
 if [ -z "$CURRENT_SALT" ] || [ "$CURRENT_SALT" = "antigravity_default_salt_99" ]; then
-    RANDOM_SALT=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32 || true)
+    RANDOM_SALT=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 32 || true)
     set_env_val "AUTH_SALT" "$RANDOM_SALT"
 fi
 
