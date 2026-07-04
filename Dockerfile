@@ -32,8 +32,8 @@ RUN cd /workspace/antigravity_phone_chat && npm install --omit=dev
 COPY --chmod=755 config/init-setup.sh /custom-cont-init.d/99-phone-connect-setup
 
 # Install custom s6 service to supervise the phone connect server
-RUN mkdir -p /custom-services.d/phone-connect
-COPY --chmod=755 config/service-run.sh /custom-services.d/phone-connect/run
+RUN mkdir -p /etc/services.d/phone-connect
+COPY --chmod=755 config/service-run.sh /etc/services.d/phone-connect/run
 
 # Set ownership of workspace to abc (Webtop user)
 RUN chown -R 1000:1000 /workspace
