@@ -17,25 +17,7 @@ import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// DIAGNOSTIC: List running processes inside container
-try {
-  const files = fs.readdirSync('/proc');
-  console.log('=== DIAGNOSTICS: RUNNING PROCESSES ===');
-  for (const file of files) {
-    if (/^\d+$/.test(file)) {
-      try {
-        const cmdline = fs.readFileSync(`/proc/${file}/cmdline`, 'utf8');
-        const cmd = cmdline.replace(/\0/g, ' ');
-        if (cmd.trim()) {
-          console.log(`  PID ${file}: ${cmd}`);
-        }
-      } catch (e) {}
-    }
-  }
-  console.log('======================================');
-} catch (e) {
-  console.log('Error reading /proc:', e.message);
-}
+
 
 const PORTS = [9000, 9001, 9002, 9003];
 const POLL_INTERVAL = 1000; // 1 second

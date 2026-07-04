@@ -9,7 +9,6 @@ services:
     ports:
       - "3020:3000"   # Webtop HTTP Web Desktop interface (VNC)
       - "3120:3100"   # Antigravity Phone Connect server (Zero-Trust Frontend)
-      - "9000:9000"   # Map CDP port to VPS host for debugging
     environment:
       - PUID=1000
       - PGID=1000
