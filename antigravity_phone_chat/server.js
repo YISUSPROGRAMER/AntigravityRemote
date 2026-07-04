@@ -473,8 +473,8 @@ async function captureSnapshot(cdp) {
             if (result.result && result.result.value) {
                 const val = result.result.value;
                 if (val.error) {
-                    // console.log(`Context ${ctx.id} script error:`, val.error);
-                    // if (val.debug) console.log(`   Debug info:`, JSON.stringify(val.debug));
+                    console.log(`Context ${ctx.id} (${ctx.name || ctx.origin}) script error:`, val.error);
+                    if (val.debug) console.log(`   Debug info:`, JSON.stringify(val.debug));
                 } else {
                     return val;
                 }
