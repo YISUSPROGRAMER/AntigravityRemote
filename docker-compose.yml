@@ -12,13 +12,20 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York  # Update to your local Timezone
-      # - APP_PASSWORD=configure_your_secure_passcode_here  # Override in Dokploy config
+      - TZ=America/New_York
     volumes:
       - webtop_config:/config
       - webtop_workspace:/workspace
-    shm_size: "1gb"          # Required for smooth Chromium performance inside XFCE
+    shm_size: "1gb"
     restart: unless-stopped
+    networks:
+      - default
+      - dokploy-network
+
+networks:
+  default:
+  dokploy-network:
+    external: true
 
 volumes:
   webtop_config:
