@@ -1,7 +1,4 @@
 #!/usr/bin/with-contenv bash
-
-echo "🚀 Starting Antigravity Phone Connect server supervised..."
 cd /workspace/antigravity_phone_chat
-
-# Exec into Node as the standard Webtop 'abc' user to keep privileges correct
-exec s6-setuidgid abc node server.js
+echo "[s6-service] Starting Antigravity Phone Connect server..." > /proc/1/fd/1
+exec node server.js > /proc/1/fd/1 2>&1
