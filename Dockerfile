@@ -26,7 +26,7 @@ WORKDIR /workspace
 COPY --chown=1000:1000 antigravity_phone_chat /workspace/antigravity_phone_chat
 
 # Install NodeJS production dependencies
-RUN cd /workspace/antigravity_phone_chat && npm ci --only=production
+RUN cd /workspace/antigravity_phone_chat && npm install --omit=dev
 
 # Install custom init configuration script for Webtop (runs once on container start)
 COPY --chmod=755 config/init-setup.sh /custom-cont-init.d/99-phone-connect-setup
