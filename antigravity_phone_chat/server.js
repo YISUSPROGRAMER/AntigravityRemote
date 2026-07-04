@@ -144,6 +144,7 @@ async function discoverCDP() {
     for (const port of PORTS) {
         try {
             const list = await getJson(`http://127.0.0.1:${port}/json/list`);
+            console.log(`[CDP Discovery] Port ${port} targets:`, JSON.stringify(list, null, 2));
 
             // Priority 1: Standard Workbench (The main window)
             const workbench = list.find(t => t.url?.includes('workbench.html') || (t.title && t.title.includes('workbench')));
