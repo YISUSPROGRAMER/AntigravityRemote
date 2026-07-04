@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     nodejs \
-    npm \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Google Antigravity CLI globally
