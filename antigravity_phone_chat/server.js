@@ -317,6 +317,9 @@ async function captureSnapshot(cdp) {
             const allElements = clone.querySelectorAll('*');
             allElements.forEach(el => {
                 try {
+                    // Only target leaf nodes (or inputs/textareas) to avoid matching parent containers
+                    if (el.children.length > 0 && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
+
                     const text = (el.innerText || '').toLowerCase();
                     const placeholder = (el.getAttribute('placeholder') || '').toLowerCase();
                     const isInputPlaceholder = text.includes('ask anything') || 
