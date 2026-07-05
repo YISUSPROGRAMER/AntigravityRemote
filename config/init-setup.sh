@@ -7,8 +7,8 @@ which antigravity > /proc/1/fd/1 2>&1
 antigravity --version > /proc/1/fd/1 2>&1
 antigravity --help > /proc/1/fd/1 2>&1
 
-ENV_FILE="/workspace/antigravity_phone_chat/.env"
-ENV_TEMPLATE="/workspace/antigravity_phone_chat/.env.example"
+ENV_FILE="/opt/antigravity_phone_chat/.env"
+ENV_TEMPLATE="/opt/antigravity_phone_chat/.env.example"
 
 # 1. Create .env from template if it doesn't exist
 if [ ! -f "$ENV_FILE" ]; then

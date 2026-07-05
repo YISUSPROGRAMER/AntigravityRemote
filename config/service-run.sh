@@ -1,6 +1,6 @@
 #!/command/with-contenv bash
 exec > /proc/1/fd/1 2>&1
-cd /workspace/antigravity_phone_chat
+cd /opt/antigravity_phone_chat
 echo "=== SERVICE START DIAGNOSTICS ==="
 echo "Environment variable APP_PASSWORD: $APP_PASSWORD"
 echo "=== CONTAINER PROCESSES ==="

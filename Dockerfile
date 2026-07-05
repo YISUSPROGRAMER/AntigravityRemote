@@ -23,10 +23,10 @@ RUN curl -fsSL https://antigravity.google/cli/install.sh | bash -s -- -d /usr/lo
 WORKDIR /workspace
 
 # Copy patched phone chat application
-COPY --chown=1000:1000 antigravity_phone_chat /workspace/antigravity_phone_chat
+COPY --chown=1000:1000 antigravity_phone_chat /opt/antigravity_phone_chat
 
 # Install NodeJS production dependencies
-RUN cd /workspace/antigravity_phone_chat && npm install --omit=dev
+RUN cd /opt/antigravity_phone_chat && npm install --omit=dev
 
 # Install custom init configuration script for Webtop (runs once on container start)
 COPY --chmod=755 config/init-setup.sh /custom-cont-init.d/99-phone-connect-setup
