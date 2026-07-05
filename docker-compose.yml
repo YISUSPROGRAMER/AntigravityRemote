@@ -13,6 +13,7 @@ services:
       - PGID=1000
       - TZ=America/New_York
       - PASSWORD=${APP_PASSWORD}  # Uses the secure passcode for VNC Desktop login
+      - CUSTOM_USER=jesus
     volumes:
       - webtop_config:/config
       - webtop_workspace:/workspace
@@ -21,11 +22,6 @@ services:
     networks:
       - default
       - dokploy-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.middlewares.desktop-auth.basicauth.users=jesus:$$apr1$$joRTATY8$$WEp5i7tX9.h2Hx0z/q3xd/"
-      - "traefik.http.middlewares.desktop-auth.basicauth.removeheader=true"
-      - "traefik.http.routers.compose-program-online-panel-lvda5z-17-websecure.middlewares=desktop-auth"
 
 networks:
   default:
