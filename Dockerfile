@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     nodejs \
+    dbus-x11 \
+    gnome-keyring \
+    libsecret-1-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Google Antigravity CLI globally

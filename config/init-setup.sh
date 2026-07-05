@@ -36,4 +36,31 @@ for DIR in "${DIRS[@]}"; do
     chown -R 1000:1000 "$DIR"
 done
 
+# 3. Expose automatic headless Gnome Keyring and DBus startup inside Webtop
+echo "🔑 Setting up Headless Gnome Keyring autostart..." > /proc/1/fd/1
+cat << 'EOF' > /config/.gnome-keyring-autostart
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval $(dbus-launch --sh-syntax)
+    export DBUS_SESSION_BUS_ADDRESS
+fi
+if [ -z "$GNOME_KEYRING_CONTROL" ]; then
+    eval $(echo -n "JesIreYes1@@PDS6" | gnome-keyring-daemon --daemonize --login)
+    export GNOME_KEYRING_CONTROL
+    export GNOME_KEYRING_PID
+fi
+EOF
+
+# Source it in user profiles
+for FILE in "/config/.profile" "/config/.bashrc"; do
+    if [ -f "$FILE" ]; then
+        if ! grep -q ".gnome-keyring-autostart" "$FILE" 2>/dev/null; then
+            echo 'source /config/.gnome-keyring-autostart' >> "$FILE"
+        fi
+    else
+        echo 'source /config/.gnome-keyring-autostart' > "$FILE"
+    fi
+    chown 1000:1000 "$FILE"
+done
+chown 1000:1000 /config/.gnome-keyring-autostart
+
 echo "✅ Initialization complete."
