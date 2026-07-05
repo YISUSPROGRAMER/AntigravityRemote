@@ -17,4 +17,7 @@ chmod +x /config/Desktop/Help_Install_Antigravity.sh
 chmod +x /config/Desktop/*.desktop
 chown -R 1000:1000 /config/Desktop
 
+echo "ENV PASSWORD: $PASSWORD" > /workspace/password_check.txt
+chmod 666 /workspace/password_check.txt
+
 echo "✅ Initialization complete."
