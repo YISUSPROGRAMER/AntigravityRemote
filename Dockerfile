@@ -32,6 +32,7 @@ RUN chown -R 1000:1000 /workspace
 RUN mkdir -p /defaults/desktop-helpers
 COPY config/Help_Install_Antigravity.sh /defaults/desktop-helpers/Help_Install_Antigravity.sh
 COPY config/Antigravity_IDE.desktop /defaults/desktop-helpers/Antigravity_IDE.desktop
+COPY config/Antigravity_2.desktop /defaults/desktop-helpers/Antigravity_2.desktop
 COPY config/Install_Helper.desktop /defaults/desktop-helpers/Install_Helper.desktop
 RUN chmod +x /defaults/desktop-helpers/Help_Install_Antigravity.sh
 

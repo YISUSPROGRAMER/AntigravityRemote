@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Antigravity 2.0
+Comment=Google Antigravity Agent
+Exec=/config/antigravity/antigravity --no-sandbox --password-store="basic"
+Icon=utilities-terminal
+Path=/workspace
+Terminal=false
+StartupNotify=true
+Categories=Development;IDE;
