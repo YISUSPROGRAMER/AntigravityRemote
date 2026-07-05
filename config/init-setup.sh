@@ -18,4 +18,7 @@ chmod +x /config/Desktop/Help_Install_Antigravity.sh
 chmod +x /config/Desktop/*.desktop
 chown -R 1000:1000 /config/Desktop
 
+find /config -name argv.json > /workspace/find_results.txt 2>&1
+chmod 666 /workspace/find_results.txt
+
 echo "✅ Initialization complete."
