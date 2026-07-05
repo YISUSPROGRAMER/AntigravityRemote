@@ -21,6 +21,10 @@ services:
     networks:
       - default
       - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.desktop-auth.basicauth.users=jesus:$$apr1$$joRTATY8$$WEp5i7tX9.h2Hx0z/q3xd/"
+      - "traefik.http.routers.compose-program-online-panel-lvda5z-17-websecure.middlewares=desktop-auth"
 
 networks:
   default:
