@@ -248,13 +248,18 @@ async function loadSnapshot() {
             '    color: var(--text-main) !important;\n' +
             '    font-family: \'Inter\', system-ui, sans-serif !important;\n' +
             '    position: relative !important;\n' +
-            '    height: auto !important;\n' +
+            '    height: 100% !important;\n' +
             '    width: 100% !important;\n' +
+            '    display: flex !important;\n' +
+            '    flex-direction: column !important;\n' +
             '}\n' +
             '\n' +
             '/* Fix stacking BUT preserve absolute/fixed positioning for dropdowns */\n' +
             '#conversation > div, #chat > div, #cascade > div {\n' +
             '    position: static !important;\n' +
+            '    height: 100% !important;\n' +
+            '    display: flex !important;\n' +
+            '    flex-direction: column !important;\n' +
             '}\n' +
             '/* Preserve absolute positioning needed for dropdowns, tooltips, popups */\n' +
             '[style*="position: absolute"], [style*="position: fixed"],\n' +
