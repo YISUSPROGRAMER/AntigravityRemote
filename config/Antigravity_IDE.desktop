@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Name=Antigravity IDE
 Comment=Google Antigravity Agent-First IDE
-Exec=/config/antigravity-ide/antigravity --no-sandbox --remote-debugging-port=9000
+Exec=/config/antigravity-ide/antigravity --no-sandbox --remote-debugging-port=9000 --password-store="basic"
 Icon=utilities-terminal
 Path=/workspace
 Terminal=false
