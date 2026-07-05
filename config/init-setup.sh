@@ -18,7 +18,22 @@ chmod +x /config/Desktop/Help_Install_Antigravity.sh
 chmod +x /config/Desktop/*.desktop
 chown -R 1000:1000 /config/Desktop
 
-find /config -name argv.json > /workspace/find_results.txt 2>&1
-chmod 666 /workspace/find_results.txt
+# 2. Enforce file-based password store (basic keyring) for all VS Code / Antigravity IDE instances
+DIRS=(
+    "/config/.vscode"
+    "/config/.antigravity"
+    "/config/.antigravity-ide"
+    "/config/.config/Antigravity"
+    "/config/.config/antigravity"
+    "/config/.config/antigravity-ide"
+)
+
+for DIR in "${DIRS[@]}"; do
+    mkdir -p "$DIR"
+    ARGV_FILE="$DIR/argv.json"
+    echo "⚙️ Writing password-store config to $ARGV_FILE..." > /proc/1/fd/1
+    echo '{"password-store": "basic"}' > "$ARGV_FILE"
+    chown -R 1000:1000 "$DIR"
+done
 
 echo "✅ Initialization complete."
