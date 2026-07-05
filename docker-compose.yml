@@ -8,13 +8,11 @@ services:
     container_name: antigravity-remote-dev
     ports:
       - "3020:3000"   # Webtop HTTP Web Desktop interface (VNC)
-      - "3120:3100"   # Antigravity Phone Connect server (Zero-Trust Frontend)
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
-      - PASSWORD=${APP_PASSWORD}  # Uses the same secure passcode for VNC Desktop login
-      - APP_PASSWORD=${APP_PASSWORD}  # Passes password to container for phone connect setup
+      - PASSWORD=${APP_PASSWORD}  # Uses the secure passcode for VNC Desktop login
     volumes:
       - webtop_config:/config
       - webtop_workspace:/workspace

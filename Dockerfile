@@ -22,18 +22,8 @@ RUN curl -fsSL https://antigravity.google/cli/install.sh | bash -s -- -d /usr/lo
 # Create workspace directory
 WORKDIR /workspace
 
-# Copy patched phone chat application
-COPY --chown=1000:1000 antigravity_phone_chat /opt/antigravity_phone_chat
-
-# Install NodeJS production dependencies
-RUN cd /opt/antigravity_phone_chat && npm install --omit=dev
-
 # Install custom init configuration script for Webtop (runs once on container start)
-COPY --chmod=755 config/init-setup.sh /custom-cont-init.d/99-phone-connect-setup
-
-# Install custom s6 service to supervise the phone connect server
-RUN mkdir -p /etc/services.d/phone-connect
-COPY --chmod=755 config/service-run.sh /etc/services.d/phone-connect/run
+COPY --chmod=755 config/init-setup.sh /custom-cont-init.d/99-webtop-setup
 
 # Set ownership of workspace to abc (Webtop user)
 RUN chown -R 1000:1000 /workspace
@@ -48,7 +38,6 @@ RUN chmod +x /defaults/desktop-helpers/Help_Install_Antigravity.sh
 # Expose ports
 # - Port 3000: Webtop GUI (HTTP Web Desktop)
 # - Port 3001: Webtop GUI (HTTPS Web Desktop)
-# - Port 3100: Antigravity Phone Connect (Zero-Trust Frontend)
-EXPOSE 3000 3001 3100
+EXPOSE 3000 3001
 
 # Keep default LinuxServer Webtop entrypoint (/init), which manages the services
